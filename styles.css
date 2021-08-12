@@ -1,0 +1,8 @@
+h1 {
+  position: relative;
+  left: 45%;
+}
+
+.selectedBtn {
+  background-color: rgb(139, 201, 255) !important;
+}
