@@ -1,14 +1,35 @@
+const getBookSectionRow = document.querySelector(".book-section-row");
+
 window.onload = () => {
     loadBooks()
 };
 
 let books = []
+
+let shoppingCart = []
 function loadBooks() {
     fetch("https://striveschool-api.herokuapp.com/books")
     .then (response => response.json())
     .then ( _books => {                                         // targeting each book that comes from the API with _books
-        books = _books;                                         // assigning them to the global variable above let books = []
+        books = _books;                                          // assigning them to the global variable above let books = []
+        displayBooks();                                          // then calling displayBooks funtion to show it in the DOM
+    })
+    .catch((err) => console.error(err.message));
+}
 
+function displayBooks() {
+    books.forEach( (book) => {
+        getBookSectionRow.innerHTML += `<div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-3" id="${book.asin}">
+                 <div class="card mx-1">
+                 <img class="card-img-top" src="${book.img}" alt="Card image cap">
+                 <div class="card-body">
+                    <h5>${book.title}</h5>
+                    <p class="card-text mb-0"><strong>Category: </strong> ${book.category}</p>
+                    <p class="card-text"><strong>Price: </strong> ${book.price}€</p>
+                    <i class="fas fa-cart-plus" onclick="addToCart(${book.asin})"></i>
+                    <i class="fas fa-circle-notch"></i> <button type="button" id="buttons" class="btn btn-primary" onclick="addToCartButton()">Add To Cart</button>           </div>
+                  </div>
+                 </div>`
     })
 }
 

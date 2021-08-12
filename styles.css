@@ -3,6 +3,25 @@ h1 {
   left: 45%;
 }
 
+#cart {
+  position: fixed;
+  top: 50%;
+  left: 0px;
+  min-height: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  max-width: 50px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  z-index: 1;
+}
+
+#cart:hover {
+  max-height: unset;
+  max-width: unset;
+}
 .selectedBtn {
   background-color: rgb(139, 201, 255) !important;
 }
+
+
